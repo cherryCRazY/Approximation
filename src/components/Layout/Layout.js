@@ -4,6 +4,7 @@ import styles from "./Layout.module.scss";
 
 import { Layout, Menu, Icon } from "antd";
 import Plot from "../Plot/Plot";
+import Hook from "../Hook/Hook";
 
 const { Header, Content, Sider } = Layout;
 
@@ -26,12 +27,15 @@ class LayoutMain extends Component {
                     collapsible
                     collapsed={this.state.collapsed}
                 >
-                    <div className={styles.logo}>Approximation</div>
                     <Menu
                         theme="dark"
                         mode="inline"
                         defaultSelectedKeys={["1"]}
                     >
+                        <Menu.Item disabled className={styles.logo} key="31">
+                            <Icon type="dot-chart" />
+                            <span>Approximation</span>
+                        </Menu.Item>
                         <Menu.Item key="1">
                             <Icon type="user" />
                             <span>nav 1</span>
@@ -65,7 +69,9 @@ class LayoutMain extends Component {
                             background: "#fff",
                             minHeight: 280
                         }}
+                        onClick={e => console.log(e)}
                     >
+                        <Hook />
                         <Plot />
                     </Content>
                 </Layout>

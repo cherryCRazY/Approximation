@@ -5,20 +5,33 @@ class AppPlot extends Component {
     render() {
         return (
             <Plot
+                onHover={e => console.log(e)}
                 data={[
                     {
-                        x: [1, 2, 3],
-                        y: [2, 6, 3],
+                        x: [1, 2, 3, 2, 4, 3.8],
+                        y: [2, 6, 3, 5, 5, 4.5678],
                         type: "scatter",
-                        mode: "lines+points",
+                        mode: "markers",
                         marker: { color: "red" }
-                    },
-                    { type: "bar", x: [1, 2, 3], y: [2, 5, 3] }
+                    }
                 ]}
                 layout={{
-                    width: "100%",
-                    height: "100%",
-                    title: "A Fancy Plot"
+                    width: "100vh",
+                    height: "100vh",
+                    title: "A Fancy Plot",
+                    xaxis: {
+                        visible: true,
+                        title: "x",
+                        font: {
+                            size: "32px"
+                        }
+                    },
+                    yaxis: {
+                        visible: true,
+                        title: {
+                            text: "y"
+                        }
+                    }
                 }}
             />
         );

@@ -7,3 +7,4 @@ function* logger() {
 export default function* rootSaga() {
     yield all([call(logger)]);
 }
+    

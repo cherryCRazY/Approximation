@@ -1,6 +1,6 @@
-import appReducer from "../app/reducers/app";
+import plotReducer from "../plot/reducer";
 import { combineReducers } from "redux";
 
 export default combineReducers({
-    app: appReducer
+    app: plotReducer
 });
