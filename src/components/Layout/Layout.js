@@ -1,83 +1,67 @@
-import React, { Component } from "react";
+//Core
+import React, { useReducer } from "react";
 
-import styles from "./Layout.module.scss";
+//Itils
+import { Map } from "immutable";
 
-import { Layout, Menu, Icon } from "antd";
+//Components
+import { Layout } from "antd";
 import Plot from "../Plot/Plot";
-import Hook from "../Hook/Hook";
+import Menu from "../Menu";
+import Drawer from "../Drawer";
+import Header from "../Header";
 
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
-class LayoutMain extends Component {
-    state = {
-        collapsed: false
-    };
+const LayoutMain = props => {
+    const [state, dispatch] = useReducer(
+        (state, action) => {
+            switch (action.type) {
+                case "TOGGLE_MENU": {
+                    return state.set("menu", !state.get("menu"));
+                }
+                case "TOGGLE_DRAWER": {
+                    return state.set("drawer", !state.get("drawer"));
+                }
 
-    toggle = () => {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
-    };
+                default: {
+                    return state;
+                }
+            }
+        },
+        new Map({
+            drawer: false,
+            menu: false
+        })
+    );
 
-    render() {
-        return (
-            <Layout style={{ minHeight: "100vh" }}>
-                <Sider
-                    trigger={null}
-                    collapsible
-                    collapsed={this.state.collapsed}
+    const menu = state.get("menu");
+    const drawer = state.get("drawer");
+
+    const toggleMenu = () => dispatch({ type: "TOGGLE_MENU" });
+    const toggleDrawer = () => dispatch({ type: "TOGGLE_DRAWER" });
+
+    return (
+        <Layout style={{ minHeight: "100vh" }}>
+            <Drawer visible={drawer} toggle={toggleDrawer} />
+            <Sider collapsible collapsed={menu} trigger={null}>
+                <Menu toggle={toggleDrawer} />
+            </Sider>
+            <Layout>
+                <Header menu={menu} toggleMenu={toggleMenu} />
+                <Content
+                    style={{
+                        margin: "24px 16px",
+                        padding: 24,
+                        background: "#fff",
+                        minHeight: "100%"
+                    }}
                 >
-                    <Menu
-                        theme="dark"
-                        mode="inline"
-                        defaultSelectedKeys={["1"]}
-                    >
-                        <Menu.Item disabled className={styles.logo} key="31">
-                            <Icon type="dot-chart" />
-                            <span>Approximation</span>
-                        </Menu.Item>
-                        <Menu.Item key="1">
-                            <Icon type="user" />
-                            <span>nav 1</span>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <Icon type="video-camera" />
-                            <span>nav 2</span>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <Icon type="upload" />
-                            <span>nav 3</span>
-                        </Menu.Item>
-                    </Menu>
-                </Sider>
-                <Layout>
-                    <Header style={{ background: "#fff", padding: 0 }}>
-                        <Icon
-                            className={styles.trigger}
-                            type={
-                                this.state.collapsed
-                                    ? "menu-unfold"
-                                    : "menu-fold"
-                            }
-                            onClick={this.toggle}
-                        />
-                    </Header>
-                    <Content
-                        style={{
-                            margin: "24px 16px",
-                            padding: 24,
-                            background: "#fff",
-                            minHeight: 280
-                        }}
-                        onClick={e => console.log(e)}
-                    >
-                        <Hook />
-                        <Plot />
-                    </Content>
-                </Layout>
+                    <Plot />
+                </Content>
             </Layout>
-        );
-    }
-}
+        </Layout>
+    );
+};
 
 export default LayoutMain;
