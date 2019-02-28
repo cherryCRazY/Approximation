@@ -13,6 +13,20 @@ export default (state = initialState, action) => {
                 points.push(action.payload)
             );
         }
+        case types.CHANGE_POINT: {
+            const { x, y, accessKey } = action.payload;
+
+            return state.setIn(["points", accessKey], {
+                x,
+                y
+            });
+        }
+        case types.DELETE_POINT: {
+            const { accessKey } = action.payload;
+            return state.update("points", points =>
+                points.deleteIn([accessKey])
+            );
+        }
         default: {
             return state;
         }

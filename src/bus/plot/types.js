@@ -1,3 +1,5 @@
 export default {
-    ADD_POINT: "ADD_POINT"
+    ADD_POINT: "ADD_POINT",
+    CHANGE_POINT: "CHANGE_POINT",
+    DELETE_POINT: "DELETE_POINT"
 };
