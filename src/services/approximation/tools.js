@@ -18,7 +18,7 @@ export const tools = data => {
     const x3Sum = sum(xPow(3));
     const x4Sum = sum(xPow(4));
 
-    const newYValue = fn => xArr.map(fn);
+    const newYValue = (fn, arr = xArr) => arr.map(fn);
 
     return {
         length,

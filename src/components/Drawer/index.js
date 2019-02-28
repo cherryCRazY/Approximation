@@ -19,7 +19,6 @@ class DrawerPlot extends React.Component {
     };
 
     handlerChange = ({ name, value }) => {
-        console.log(name, value);
         this.setState({ [name]: value });
     };
 

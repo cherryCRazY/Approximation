@@ -30,8 +30,12 @@ export const mnkSecond = data => {
     //! MB CHANGE
     //?REWRITE TO MORE DOTS
 
-    //? const min = Math.min.apply(null, xArr);
-    //? const max = Math.max.apply(null, xArr);
+    const min = Math.min.apply(null, xArr);
+    const max = Math.max.apply(null, xArr);
+    const parabolaArr = [];
+    for (let i = min; i < max; i += 0.1) {
+        parabolaArr.push(i);
+    }
 
     //? console.table({ min, max });
 
@@ -39,7 +43,7 @@ export const mnkSecond = data => {
 
     console.table({ A, B, C });
 
-    const parabola = newYValue(findY);
+    const parabola = newYValue(findY, parabolaArr);
 
-    return { x: xArr, y: parabola, A, B, C };
+    return { x: parabolaArr, y: parabola, A, B, C };
 };
