@@ -12,3 +12,11 @@ export const delatePoint = point => ({
     type: types.DELETE_POINT,
     payload: point
 });
+export const setApproData = service => ({
+    type: types.SET_APPRO_DATA,
+    payload: service
+});
+export const setInterData = service => ({
+    type: types.SET_INTER_DATA,
+    payload: service
+});

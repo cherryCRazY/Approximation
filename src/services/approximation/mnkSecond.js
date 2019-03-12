@@ -1,11 +1,10 @@
-import { tools } from "./tools";
+import { tools } from "../tools";
 import invert from "./invert";
 import math from "mathjs";
 
 export const mnkSecond = data => {
     const {
         length,
-        //round,
         xArr,
         xSum,
         ySum,
@@ -33,11 +32,10 @@ export const mnkSecond = data => {
     const min = Math.min.apply(null, xArr);
     const max = Math.max.apply(null, xArr);
     const parabolaArr = [];
-    for (let i = min; i < max; i += 0.1) {
+
+    for (let i = min; i <= max + 0.1; i += 0.1) {
         parabolaArr.push(i);
     }
-
-    //? console.table({ min, max });
 
     const findY = ((a, b, c) => x => a * x ** 2 + b * x + c)(A, B, C);
 

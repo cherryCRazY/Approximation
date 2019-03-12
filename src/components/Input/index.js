@@ -1,5 +1,5 @@
 //Core
-import React, { useState, memo } from "react";
+import React, { memo } from "react";
 
 //Components
 import { Input } from "antd";
@@ -20,7 +20,6 @@ const InputPlot = props => {
                 addonBefore="X:"
                 size="large"
                 type="number"
-                // name="x"
                 value={x}
                 accessKey={accessKey}
                 onChange={e =>
@@ -37,7 +36,6 @@ const InputPlot = props => {
                 addonBefore="Y:"
                 size="large"
                 type="number"
-                // name="y"
                 value={y}
                 accessKey={accessKey}
                 onChange={e =>

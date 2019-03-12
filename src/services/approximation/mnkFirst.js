@@ -1,4 +1,4 @@
-import { tools } from "./tools";
+import { tools } from "../tools";
 
 export const mnkFirst = data => {
     const { xArr, xSum, ySum, xySum, x2Sum, round, length, newYValue } = tools(

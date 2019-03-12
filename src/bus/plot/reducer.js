@@ -3,7 +3,9 @@ import { Map, List } from "immutable";
 import types from "./types";
 
 const initialState = Map({
-    points: List()
+    points: List(),
+    appro: { mnk1: {}, mnk2: {} },
+    inter: {}
 });
 
 export default (state = initialState, action) => {
@@ -26,6 +28,12 @@ export default (state = initialState, action) => {
             return state.update("points", points =>
                 points.deleteIn([accessKey])
             );
+        }
+        case types.SET_APPRO_DATA: {
+            return state.set("appro", action.payload);
+        }
+        case types.SET_INTER_DATA: {
+            return state.set("inter", action.payload);
         }
         default: {
             return state;

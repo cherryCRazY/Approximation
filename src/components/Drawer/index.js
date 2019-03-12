@@ -8,6 +8,7 @@ import { addDot, changePoint, delatePoint } from "../../bus/plot/actions";
 //Components
 import { Drawer, Button } from "antd";
 import InputPlot from "../Input";
+import ApproCards from "../ApproCards";
 
 //rewrite on the Hooks
 class DrawerPlot extends React.Component {
@@ -66,10 +67,11 @@ class DrawerPlot extends React.Component {
 
     render() {
         const { x, y } = this.state;
+        const { mode, handlerClick, points } = this.props;
         return (
             <div>
                 <Drawer
-                    title="Draw Settings"
+                    title={`Draw Settings - ${mode}`}
                     width={520}
                     onClose={this.props.toggle}
                     visible={this.props.visible}
@@ -78,6 +80,12 @@ class DrawerPlot extends React.Component {
                     <Button type="primary" onClick={this.showChildrenDrawer}>
                         Add new points
                     </Button>
+                    {mode === "Approximation" ? (
+                        <ApproCards
+                            length={points.length}
+                            handlerClick={handlerClick}
+                        />
+                    ) : null}
                     <Drawer
                         title="Points"
                         width={320}
@@ -115,7 +123,7 @@ class DrawerPlot extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    points: state.plot.get("points")
+    points: state.plot.get("points").toJS()
 });
 
 const mapDispatchToProps = dispatch => ({
