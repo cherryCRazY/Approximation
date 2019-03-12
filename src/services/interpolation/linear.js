@@ -2,7 +2,7 @@ export const linear = (x, points) => {
     //? More inforamtion you can check at http://www.mathros.net.ua/linijna-interpoljacija.html
 
     //helper
-    const round = n => Math.round(n * 10000) / 10000;
+    const round = n => Math.round(n * 100000) / 100000;
 
     const temp = points.map(({ x, y }) => [x, y]);
 

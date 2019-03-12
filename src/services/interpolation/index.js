@@ -16,7 +16,7 @@ export const interData = data => {
     const xLinear = sortedPointArr.map(point => +point[0]);
     const yLinear = sortedPointArr.map(point => +point[1]);
 
-    for (let i = points.minX; i < points.maxX + 0.1; i += 0.1) {
+    for (let i = points.minX; i < points.maxX + 0.01; i += 0.01) {
         lagrangeX.push(i);
         lagrangeY.push(+lagrange(i, data));
     }
