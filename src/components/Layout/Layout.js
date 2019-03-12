@@ -7,8 +7,7 @@ import { Map } from "immutable";
 
 //Services
 import { approData } from "../../services/approximation";
-import { lagrange } from "../../services/interpolation/lagrange";
-import { linear } from "../../services/interpolation/linear";
+import { interData } from "../../services/interpolation";
 
 //Components
 import { Layout } from "antd";
@@ -69,14 +68,20 @@ const LayoutMain = props => {
         const data = service(props.points);
 
         dispatch({ type: "SET_DATA", data: data.data });
-        mode === "Approximation"
-            ? props.onAppro(data.appro)
-            : props.onInter(data);
+        if (mode === "Approximation") {
+            props.onAppro(data.appro);
+        }
+        if (mode === "Interpolation") {
+            props.onInter(data.inter);
+        }
     };
 
     useEffect(() => {
         if (mode === "Approximation") {
             setService(approData);
+        }
+        if (mode === "Interpolation") {
+            setService(interData);
         }
     }, [mode]);
 

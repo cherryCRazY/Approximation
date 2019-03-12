@@ -9,6 +9,7 @@ import { addDot, changePoint, delatePoint } from "../../bus/plot/actions";
 import { Drawer, Button } from "antd";
 import InputPlot from "../Input";
 import ApproCards from "../ApproCards";
+import InterCards from "../InterCards";
 
 //rewrite on the Hooks
 class DrawerPlot extends React.Component {
@@ -85,7 +86,12 @@ class DrawerPlot extends React.Component {
                             length={points.length}
                             handlerClick={handlerClick}
                         />
-                    ) : null}
+                    ) : (
+                        <InterCards
+                            length={points.length}
+                            handlerClick={handlerClick}
+                        />
+                    )}
                     <Drawer
                         title="Points"
                         width={320}

@@ -6,7 +6,20 @@ export const interData = data => {
     const points = tools(data);
 
     let { xArr: x, yArr: y } = points;
-    // const lag = lagrange(points);
+
+    const lagrangeX = [];
+    const lagrangeY = [];
+
+    const temp = data.map(({ x, y }) => [x, y]);
+    const sortedPointArr = temp.sort((a, b) => a[0] - b[0]);
+
+    const xLinear = sortedPointArr.map(point => +point[0]);
+    const yLinear = sortedPointArr.map(point => +point[1]);
+
+    for (let i = points.minX; i < points.maxX + 0.1; i += 0.1) {
+        lagrangeX.push(i);
+        lagrangeY.push(+lagrange(i, data));
+    }
 
     let trace = {
         x,
@@ -17,18 +30,19 @@ export const interData = data => {
         marker: { color: "red" }
     };
     let linearTrace = {
-        x,
-        y,
+        x: xLinear,
+        y: yLinear,
         type: "scatter",
         mode: "line",
-        name: "linear",
+        name: "Linear",
         marker: { color: "blue" }
     };
     let lagrangeTrace = {
-        // ...mnk2,
+        x: lagrangeX,
+        y: lagrangeY,
         type: "scatter",
         mode: "line",
-        name: "mnk-2",
+        name: "Lagrange",
         marker: { color: "green" }
     };
 

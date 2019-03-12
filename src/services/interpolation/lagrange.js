@@ -1,6 +1,8 @@
+import { tools } from "../tools";
 
-export const lagrange = (x, { xArr, yArr, length }) => {
+export const lagrange = (x, points) => {
     let lagrangePol = 0;
+    const { xArr, yArr, length } = tools(points);
 
     for (let i = 0; i < length; i++) {
         let basicsPol = 1;
@@ -12,5 +14,5 @@ export const lagrange = (x, { xArr, yArr, length }) => {
         }
         lagrangePol += basicsPol * yArr[i];
     }
-    return { lagrangePol, xArr, yArr };
+    return lagrangePol;
 };

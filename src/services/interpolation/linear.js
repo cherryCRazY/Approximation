@@ -11,22 +11,19 @@ export const linear = (x, points) => {
         el[0] > x ? index : false
     );
 
-    const a =
-        (sortedPointArr[index][1] - sortedPointArr[index - 1][1]) /
-        (sortedPointArr[index][0] - sortedPointArr[index - 1][0]);
+    try {
+        const a =
+            (sortedPointArr[index][1] - sortedPointArr[index - 1][1]) /
+            (sortedPointArr[index][0] - sortedPointArr[index - 1][0]);
 
-    const b = sortedPointArr[index - 1][1] - sortedPointArr[index - 1][0] * a;
+        const b =
+            sortedPointArr[index - 1][1] - sortedPointArr[index - 1][0] * a;
 
-    const F = a * x + b;
+        const F = a * x + b;
 
-    return round(F);
+        return round(F);
+    } catch (error) {
+        console.log("You must choose dot in range");
+        return 0;
+    }
 };
-
-linear(-1.3, [
-    { x: -1, y: 0 },
-    { x: -1.5, y: -0.7 },
-    { x: -0.5, y: 0.7 },
-    { x: 0.5, y: 0.7 },
-    { x: 1.5, y: -0.7 },
-    { x: 0, y: 1 }
-]);
