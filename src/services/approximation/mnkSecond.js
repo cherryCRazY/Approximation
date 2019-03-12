@@ -1,21 +1,19 @@
-import { tools } from "../tools";
 import invert from "./invert";
 import math from "mathjs";
 
-export const mnkSecond = data => {
-    const {
-        length,
-        xArr,
-        xSum,
-        ySum,
-        xySum,
-        x2ySum,
-        x2Sum,
-        x3Sum,
-        x4Sum,
-        newYValue
-    } = tools(data);
-
+export const mnkSecond = ({
+    length,
+    minX,
+    maxX,
+    xSum,
+    ySum,
+    xySum,
+    x2ySum,
+    x2Sum,
+    x3Sum,
+    x4Sum,
+    newYValue
+}) => {
     const matrixA = [
         [x4Sum, x3Sum, x2Sum],
         [x3Sum, x2Sum, xSum],
@@ -26,14 +24,9 @@ export const mnkSecond = data => {
 
     const [A, B, C] = coef.flat(1);
 
-    //! MB CHANGE
-    //?REWRITE TO MORE DOTS
-
-    const min = Math.min.apply(null, xArr);
-    const max = Math.max.apply(null, xArr);
     const parabolaArr = [];
 
-    for (let i = min; i <= max + 0.1; i += 0.1) {
+    for (let i = minX; i <= maxX + 0.1; i += 0.1) {
         parabolaArr.push(i);
     }
 

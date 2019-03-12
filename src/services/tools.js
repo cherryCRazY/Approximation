@@ -9,6 +9,9 @@ export const tools = data => {
     const xArr = data.map(point => +point.x);
     const yArr = data.map(point => +point.y);
 
+    const minX = Math.min.apply(null, xArr);
+    const maxX = Math.max.apply(null, xArr);
+
     const xSum = sum(xArr);
     const ySum = sum(yArr);
     const xySum = sum(data.map(point => point.x * point.y));
@@ -33,6 +36,8 @@ export const tools = data => {
         x2Sum,
         x3Sum,
         x4Sum,
+        minX,
+        maxX,
         newYValue
     };
 };

@@ -1,10 +1,13 @@
-import { tools } from "../tools";
-
-export const mnkFirst = data => {
-    const { xArr, xSum, ySum, xySum, x2Sum, round, length, newYValue } = tools(
-        data
-    );
-
+export const mnkFirst = ({
+    xArr,
+    xSum,
+    ySum,
+    xySum,
+    x2Sum,
+    round,
+    length,
+    newYValue
+}) => {
     const A = round(
         (length * xySum - xSum * ySum) / (length * x2Sum - xSum ** 2)
     );

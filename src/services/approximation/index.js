@@ -1,11 +1,13 @@
 import { mnkFirst } from "./mnkFirst";
 import { mnkSecond } from "./mnkSecond";
+import { tools } from "../tools";
 
 export const approData = data => {
-    let x = data.map(point => +point.x);
-    let y = data.map(point => +point.y);
-    const mnk1 = mnkFirst(data);
-    const mnk2 = mnkSecond(data);
+    const points = tools(data);
+
+    let { xArr: x, yArr: y } = points;
+    const mnk1 = mnkFirst(points);
+    const mnk2 = mnkSecond(points);
 
     let trace = {
         x,

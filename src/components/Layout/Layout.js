@@ -8,6 +8,7 @@ import { Map } from "immutable";
 //Services
 import { approData } from "../../services/approximation";
 import { lagrange } from "../../services/interpolation/lagrange";
+import { linear } from "../../services/interpolation/linear";
 
 //Components
 import { Layout } from "antd";
