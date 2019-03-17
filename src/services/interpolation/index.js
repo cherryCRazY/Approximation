@@ -47,6 +47,7 @@ export const interData = data => {
     };
 
     // Data is the special object to Plotly
+    //TODO
     return {
         data: [linearTrace, lagrangeTrace, trace],
         inter: {
